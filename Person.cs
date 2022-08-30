@@ -50,7 +50,8 @@ namespace CGS
 
         // use properties instead of local variables this.firstName...
         // override a method that is inhenrit 
-        public override string ToString()
+        // virtual because it is going to be override by its child
+        public virtual string toString()
         {
             return FirstName + " " + LastName;
         }

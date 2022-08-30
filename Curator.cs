@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace CGS
 {
-    internal class Curator : Person
-    {
-        const double commRate = 0.1; 
+    class Curator : Person
+    { 
         string curatorID;
         double commission;
+        const double commissionRate = 0.25;
 
-        public Curator(string firstName, string lastName, string curatorID, double commision) 
-            : base(firstName, lastName)
+        // no initialization is required for firstName and lastName
+        // because they are from Person class
+        // just initialize local variables
+        // minus the const one (commisionRate)
+        public Curator(string curatorID, double commision, string firstName, 
+            string lastName) : base(firstName, lastName)
         {
             this.curatorID = curatorID;
             this.commission = commision;
@@ -36,14 +40,20 @@ namespace CGS
             return CuratorID;
         }
 
-        public void SetComm(double newCommission)
+        public void SetCommission(double comm)
         {
-            Commission += newCommission;
+            Commission += comm;
         }
 
-        public override string ToString()
+        public void clearCommand()
         {
-            return base.ToString() + " " + CuratorID + " " + Commission;
+            Console.Clear();
+        }
+
+        // override a method that is inhenrit 
+        public override string toString()
+        {
+            return CuratorID + " " + base.toString() + " " +  Commission;
         }
     }
 }
