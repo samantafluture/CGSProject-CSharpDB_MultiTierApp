@@ -113,78 +113,106 @@ namespace CGS
 
             if (pID.Length != 5)
             {
-                Console.WriteLine("Error! The artpieceID should have 5 characters");
+                Console.WriteLine("Error! The id should have 5 characters");
             }
             else
             {
-                foreach (Artpiece piece in myArtpieces)
+                if (ArtpieceVerifier(pID) == true)
                 {
-                    if (piece.GetId() == pID)
-                    {
-                        Console.WriteLine("Error! There is another artpiece with this ID");
-                        return;
-                    }
-                }
-
-                Console.WriteLine("Please enter the title: ");
-                string title = Console.ReadLine();
-
-                Console.WriteLine("Please enter the year: ");
-                int year = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine("Please enter the value: ");
-                double value = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Please enter the estimate: ");
-                double estimate = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Please enter the status: ");
-                char status = Convert.ToChar(Console.ReadLine());
-
-                Console.WriteLine("Please enter the artist ID: ");
-                string aID = Console.ReadLine();
-
-                if (aID.Length != 5)
-                {
-                    Console.WriteLine("Error! The artist ID should be exactly 5 characters");
+                    Console.WriteLine("Error! This id already exists");
                 }
                 else
                 {
-                    foreach (Artist artist in myArtists)
-                    {
-                        if (artist.GetID() == aID)
-                        {
-                            Console.WriteLine("Error! There is another artist with this ID");
-                            return;
-                        }
-                    }
-
                     Console.WriteLine("Please enter the curator ID: ");
                     string cID = Console.ReadLine();
 
-                    if (cID.Length != 5)
+                    if (CuratorVerifier(cID) == true)
                     {
-                        Console.WriteLine("Error! The CuratorID should be exactly 5 characters");
+                        Console.WriteLine("Error! This id already exists");
                     }
                     else
                     {
-                        foreach (Curator cur in myCurators)
+                        Console.WriteLine("Please enter the artist ID: ");
+                        string aID = Console.ReadLine();
+
+                        if (ArtistVerifier(aID) == true)
                         {
-                            if (cur.GetID() == cID)
-                            {
-                                Console.WriteLine("Error! There is another curator with this ID");
-                                return;
-                            }
-
+                            Console.WriteLine("Error! This id already exists");
                         }
+                        else
+                        {
+                            Console.WriteLine("Please enter the title: ");
+                            string title = Console.ReadLine();
 
-                        Artpiece artpiece = new Artpiece(pID, title, year, value, estimate, status, aID, cID);
-                        myArtpieces.Add(artpiece);
+                            Console.WriteLine("Please enter the year: ");
+                            int year = Convert.ToInt32(Console.ReadLine());
 
-                        Console.WriteLine("The artpiece has been succefully added to the list");
+                            Console.WriteLine("Please enter the value: ");
+                            double value = Convert.ToDouble(Console.ReadLine());
+
+                            // set default estimate and status values
+                            double estimate = 0.0;
+                            char status = 'E';
+
+                            Artpiece artpiece = new Artpiece(pID, title, year, value, 
+                                estimate, status, aID, cID);
+                            myArtpieces.Add(artpiece);
+
+                            Console.WriteLine("The artpiece has been succefully added to the list");
+                        }
                     }
                 }
+
             }
         }
+        
+        // check if artpiece ID exists (if is valid)
+        public bool ArtpieceVerifier(string artPId)
+        {
+            bool flag = false;
+
+            foreach(Artpiece piece in myArtpieces)
+            {
+                if(piece.GetId() == artPId)
+                {
+                    flag = true;
+                }
+            }
+
+            return flag;
+        }
+
+        // check if artist ID exists (if is valid)
+        public bool ArtistVerifier(string artId)
+        {
+            bool flag = false;
+
+            foreach (Artist artist in myArtists)
+            {
+                if (artist.GetID() == artId)
+                {
+                    flag = true;
+                }
+            }
+
+            return flag;
+        }
+
+        // check if curator ID exists (if is valid)
+        public bool CuratorVerifier(string cId)
+        {
+            bool flag = false;
+
+            foreach (Curator curator in myCurators)
+            {
+                if (curator.GetID() == cId)
+                {
+                    flag = true;
+                }
+            }
+
+            return flag;
+        }
+
     }
 }
