@@ -27,7 +27,7 @@ namespace CGS
             return ArtistID + " " + base.toString();
         }
 
-        public string getID()
+        public string GetID()
         {
             return artistID;
         }

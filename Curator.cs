@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace CGS
 {
     class Curator : Person
+        // in charge of: functionalities
     { 
         string curatorID;
         double commission;

@@ -11,6 +11,7 @@ namespace CGS
     // in that way, I can call list
     // we add an object into the list
     class Curators : CollectionBase
+        // in charge of: data structures
     {
         public void Add(Curator curator)
         {
