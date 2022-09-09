@@ -135,9 +135,9 @@ namespace CGS
                         Console.WriteLine("Please enter the artist ID: ");
                         string aID = Console.ReadLine();
 
-                        if (ArtistVerifier(aID) == true)
+                        if (ArtistVerifier(aID) == false)
                         {
-                            Console.WriteLine("Error! This id already exists");
+                            Console.WriteLine("Error! This id does not already exist");
                         }
                         else
                         {
@@ -152,7 +152,7 @@ namespace CGS
 
                             // set default estimate and status values
                             double estimate = 0.0;
-                            char status = 'E';
+                            char status = 'A';
 
                             Artpiece artpiece = new Artpiece(pID, title, year, value, 
                                 estimate, status, aID, cID);
@@ -165,7 +165,57 @@ namespace CGS
 
             }
         }
-        
+
+        public double ReturnArtpieceValue(string pieceID)
+        {
+            double estimate = 0.0;
+
+            foreach (Artpiece artpiece in myArtpieces)
+            {
+                if(artpiece.GetId() == pieceID)
+                {
+                    estimate = artpiece.Value;
+                }
+            }
+            return estimate;
+        }
+
+        public void ChangeArtpieceStatus(string pieceID)
+        {
+            foreach (Artpiece artpiece in myArtpieces)
+            {
+                if (artpiece.GetId() == pieceID)
+                {
+                    artpiece.ChangeStatus('S');
+                }
+            }
+        }
+
+        public void SellArtpiece()
+        {
+            Console.WriteLine("Please enter the artpiece ID: ");
+            string pID = Console.ReadLine();
+
+            if (ArtpieceVerifier(pID) == false)
+            {
+                Console.WriteLine("Error! This id does not exist");
+            } else
+            {
+                Console.WriteLine("Please enter the estimate: ");
+                double estimate = Convert.ToDouble(Console.ReadLine());
+                double value = ReturnArtpieceValue(pID);
+
+                if(estimate >= value)
+                {
+                    Console.WriteLine("Error! The estimate entered is below the value");
+                } else
+                {
+                    ChangeArtpieceStatus(pID);
+                    Console.WriteLine("The artpiece has been sold successfully!");
+                }
+            }
+        }
+
         // check if artpiece ID exists (if is valid)
         public bool ArtpieceVerifier(string artPId)
         {
