@@ -126,9 +126,9 @@ namespace CGS
                     Console.WriteLine("Please enter the curator ID: ");
                     string cID = Console.ReadLine();
 
-                    if (CuratorVerifier(cID) == true)
+                    if (CuratorVerifier(cID) == false)
                     {
-                        Console.WriteLine("Error! This id already exists");
+                        Console.WriteLine("Error! This id does not exist");
                     }
                     else
                     {
@@ -137,7 +137,7 @@ namespace CGS
 
                         if (ArtistVerifier(aID) == false)
                         {
-                            Console.WriteLine("Error! This id does not already exist");
+                            Console.WriteLine("Error! This id does not exist");
                         }
                         else
                         {
@@ -205,7 +205,7 @@ namespace CGS
                 double estimate = Convert.ToDouble(Console.ReadLine());
                 double value = ReturnArtpieceValue(pID);
 
-                if(estimate >= value)
+                if(estimate <= value)
                 {
                     Console.WriteLine("Error! The estimate entered is below the value");
                 } else
