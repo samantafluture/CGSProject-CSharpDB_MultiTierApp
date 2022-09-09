@@ -211,7 +211,40 @@ namespace CGS
                 } else
                 {
                     ChangeArtpieceStatus(pID);
+
+                    string curatorID = FetchCuratorIDFromArtpiece(pID);
+                    SetNewCommission(curatorID, estimate, value);
+
                     Console.WriteLine("The artpiece has been sold successfully!");
+                }
+            }
+        }
+
+        public string FetchCuratorIDFromArtpiece(string pieceID)
+        {
+            string curatorID = "";
+
+            foreach(Artpiece artpiece in myArtpieces)
+            {
+                if(artpiece.PieceID == pieceID)
+                {
+                    curatorID = artpiece.CuratorID;
+                }
+            }
+
+            return curatorID;
+        }
+
+        public void SetNewCommission(string curatorID, double estimate, double value)
+        {
+            double commission = 0.0;
+
+            foreach (Curator curator in myCurators)
+            {
+                if (curator.GetID() == curatorID)
+                {
+                    commission = (estimate - value) * 0.25;
+                    curator.SetCommission(commission);
                 }
             }
         }
