@@ -10,9 +10,11 @@ namespace CGS
     {
         static void Main(string[] args)
         {
+            Gallery gallery = new Gallery();
+
             do
             {
-                Console.WriteLine("**** ART GALLERY ****\n" +
+                Console.WriteLine("\n**** ART GALLERY ****\n" +
                                     "Please choose one of the following options:\n");
                 Console.WriteLine("\n1. Add Curator\n" +
                                     "2. Add Artist\n" +
@@ -20,7 +22,6 @@ namespace CGS
                                     "4. Sell Artpiece\n" +
                                     "5. Exit\n");
 
-                Gallery gallery = new Gallery();
                 string option = Console.ReadLine();
 
                 switch (option)
@@ -50,4 +51,100 @@ namespace CGS
     }
 }
 
-    
+/*
+Output:
+
+**** ART GALLERY ****
+Please choose one of the following options:
+
+
+1. Add Curator
+2. Add Artist
+3. Add Artpiece
+4. Sell Artpiece
+5. Exit
+
+1
+Please, enter the curator ID:
+11111
+Please enter the first name:
+samanta
+Please enter the last name:
+fluture
+The curator has been succefully added to the list
+
+**** ART GALLERY ****
+Please choose one of the following options:
+
+
+1. Add Curator
+2. Add Artist
+3. Add Artpiece
+4. Sell Artpiece
+5. Exit
+
+2
+Please, enter the artist ID:
+22222
+Please enter the first name:
+alissa
+Please enter the last name:
+osumi
+The artist has been succefully added to the list
+
+**** ART GALLERY ****
+Please choose one of the following options:
+
+
+1. Add Curator
+2. Add Artist
+3. Add Artpiece
+4. Sell Artpiece
+5. Exit
+
+3
+Please enter the artpiece ID:
+33333
+Please enter the curator ID:
+11111
+Please enter the artist ID:
+22222
+Please enter the title:
+tom and peta
+Please enter the year:
+2014
+Please enter the value:
+100
+The artpiece has been succefully added to the list
+
+**** ART GALLERY ****
+Please choose one of the following options:
+
+
+1. Add Curator
+2. Add Artist
+3. Add Artpiece
+4. Sell Artpiece
+5. Exit
+
+4
+Please enter the artpiece ID:
+33333
+Please enter the estimate:
+200
+The artpiece has been sold successfully!
+
+**** ART GALLERY ****
+Please choose one of the following options:
+
+
+1. Add Curator
+2. Add Artist
+3. Add Artpiece
+4. Sell Artpiece
+5. Exit
+
+5
+Thank you and Good-Bye
+ */
+
